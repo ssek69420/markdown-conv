@@ -6,22 +6,35 @@ using namespace std;
 
 class MarkDown{
   public:
-    bool identify = false;
+    int identify = 0;
+
     void identifyTag(std::string text){
       std::string inpFullSTR;
+      bool readingText = false;
+
       for(auto i : text){
-        if(i == '#'){
-          identify = true;
-        }else{
-         if(i != '#' && i != ' '){
+        if(!readingText && i == '#'){
+          identify += 1;
+        }
+        else if(!readingText && i == ' '){
+          readingText = true;
+        }
+        else{
+          readingText = true;
           inpFullSTR.push_back(i);
-          }
         }
       }
-      if(identify){
-          std::cout<<"<h1>"<<inpFullSTR<<"</h1>"<<endl;
-        }
-  }
+
+      if(identify == 1){
+        std::cout << "<h1>" << inpFullSTR << "</h1>" << std::endl;
+      }
+      else if(identify == 2){
+        std::cout << "<h2>" << inpFullSTR << "</h2>" << std::endl;
+      }
+      else if(identify == 3){
+        std::cout << "<h3>" << inpFullSTR << "</h3>" << std::endl;
+      }
+    }
 };
 
 int main(){
