@@ -42,7 +42,6 @@ class MarkDown{
 int main(){
   MarkDown mk;
   string inp; getline(cin, inp);
-  auto result = mk.identifyTag(inp);
-  cout << result << endl;
+  mk.identifyTag(inp);
   return 0;
 }
