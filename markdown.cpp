@@ -6,9 +6,9 @@ using namespace std;
 
 class MarkDown{
   public:
-    int identify = 0;
-
-    void identifyTag(std::string text){
+  
+  std::string identifyTag(const std::string& text){
+      int identify = 0;
       std::string inpFullSTR;
       bool readingText = false;
 
@@ -25,21 +25,24 @@ class MarkDown{
         }
       }
 
-      if(identify == 1){
-        std::cout << "<h1>" << inpFullSTR << "</h1>" << std::endl;
-      }
-      else if(identify == 2){
-        std::cout << "<h2>" << inpFullSTR << "</h2>" << std::endl;
-      }
-      else if(identify == 3){
-        std::cout << "<h3>" << inpFullSTR << "</h3>" << std::endl;
-      }
+        if (identify == 1) {
+            return "<h1>" + inpFullSTR + "</h1>";
+        }
+        else if (identify == 2) {
+            return "<h2>" + inpFullSTR + "</h2>";
+        }
+        else if (identify == 3) {
+            return "<h3>" + inpFullSTR + "</h3>";
+        }
+
+        return inpFullSTR;
     }
 };
 
 int main(){
   MarkDown mk;
   string inp; getline(cin, inp);
-  mk.identifyTag(inp);
+  auto result = mk.identifyTag(inp);
+  cout << result << endl;
   return 0;
 }
